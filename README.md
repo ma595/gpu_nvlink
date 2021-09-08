@@ -21,7 +21,17 @@ Link 1, Link is supported: false
 
 12 links (each 25GB/s), 600 GB/s total. See:
 
-`nvidia-smi nvlink -s` 
+```
+nvidia-smi nvlink -s
+nvidia-smi topo --matrix
+nvidia-smi topo -p2p n
+
+GPU0   GPU1    GPU2    GPU3
+GPU0   X       OK      OK      OK
+GPU1   OK      X       OK      OK
+GPU2   OK      OK      X       OK
+GPU3   OK      OK      OK      X
+``` 
 
 How do we actually monitor/verify NVLink utility?
 
@@ -52,6 +62,8 @@ P2P=Enabled Latency (P2P Writes) Matrix (us)
 
 So performance appears to be better on p100???
 What is this actually doing?
+
+cudaMemcpy(gpu0_buf, gpu1_buf, buf_size, cudaMemcpyDefault)
 
 ## gdrcopy
 A low-latency GPU memory copy library. 
