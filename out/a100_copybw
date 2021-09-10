@@ -1,0 +1,24 @@
+GPU id:0; name: NVIDIA A100-SXM-80GB; Bus id: 0000:01:00
+GPU id:1; name: NVIDIA A100-SXM-80GB; Bus id: 0000:41:00
+GPU id:2; name: NVIDIA A100-SXM-80GB; Bus id: 0000:81:00
+GPU id:3; name: NVIDIA A100-SXM-80GB; Bus id: 0000:c1:00
+selecting device 0
+testing size: 131072
+rounded size: 131072
+gpu alloc fn: cuMemAlloc
+device ptr: 1508d1200000
+map_d_ptr: 0x1508f2181000
+info.va: 1508d1200000
+info.mapped_size: 131072
+info.page_size: 65536
+info.mapped: 1
+info.wc_mapping: 1
+page offset: 0
+user-space pointer:0x1508f2181000
+writing test, size=131072 offset=0 num_iters=10000
+write BW: 9002.56MB/s
+reading test, size=131072 offset=0 num_iters=100
+read BW: 22.1313MB/s
+unmapping buffer
+unpinning buffer
+closing gdrdrv

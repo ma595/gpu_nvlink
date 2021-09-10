@@ -1,0 +1,23 @@
+GPU id:0; name: Tesla P100-PCIE-16GB; Bus id: 0000:04:00
+GPU id:1; name: Tesla P100-PCIE-16GB; Bus id: 0000:05:00
+GPU id:2; name: Tesla P100-PCIE-16GB; Bus id: 0000:06:00
+GPU id:3; name: Tesla P100-PCIE-16GB; Bus id: 0000:07:00
+selecting device 0
+testing size: 131072
+rounded size: 131072
+device ptr: 2b1b7a800000
+map_d_ptr: 0x2b1b43f80000
+info.va: 2b1b7a800000
+info.mapped_size: 131072
+info.page_size: 65536
+info.mapped: 1
+info.wc_mapping: 1
+page offset: 0
+user-space pointer:0x2b1b43f80000
+writing test, size=131072 offset=0 num_iters=10000
+write BW: 9723.12MB/s
+reading test, size=131072 offset=0 num_iters=100
+read BW: 512.063MB/s
+unmapping buffer
+unpinning buffer
+closing gdrdrv

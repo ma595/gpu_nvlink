@@ -1,0 +1,16 @@
+#! /bin/bash
+#SBATCH --nodes=1
+#SBATCH -p ampere
+#SBATCH --account SUPPORT-GPU
+#SBATCH --exclusive
+#SBATCH -t 0:02:00
+#SBATCH --output "out/ampere_%j.out"
+#SBATCH --reservation "test_a100"
+
+. /etc/profile.d/modules.sh
+module purge
+export OMP_NUM_THREADS=1
+module load slurm
+module load cuda/11.4 openmpi-4.0.5-gcc-8.4.1-2lpgttf
+nvcc examples/p2pBandwidthLatencyTest.cu -I/usr/local/software/cuda/11.4/samples/common/inc/ -o ampere
+./ampere --p2p_read

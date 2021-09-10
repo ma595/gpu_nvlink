@@ -1,0 +1,77 @@
+GPU id:0; name: NVIDIA A100-SXM-80GB; Bus id: 0000:01:00
+GPU id:1; name: NVIDIA A100-SXM-80GB; Bus id: 0000:41:00
+GPU id:2; name: NVIDIA A100-SXM-80GB; Bus id: 0000:81:00
+GPU id:3; name: NVIDIA A100-SXM-80GB; Bus id: 0000:c1:00
+selecting device 0
+device ptr: 0x151e1e000000
+allocated size: 16777216
+gpu alloc fn: cuMemAlloc
+
+map_d_ptr: 0x151e382c5000
+info.va: 151e1e000000
+info.mapped_size: 16777216
+info.page_size: 65536
+info.mapped: 1
+info.wc_mapping: 1
+page offset: 0
+user-space pointer: 0x151e382c5000
+
+gdr_copy_to_mapping num iters for each size: 10000
+WARNING: Measuring the API invocation overhead as observed by the CPU. Data might not be ordered all the way to the GPU internal visibility.
+Test 			 Size(B) 	 Avg.Time(us)
+gdr_copy_to_mapping 	        1 	      0.2805
+gdr_copy_to_mapping 	        2 	      0.2807
+gdr_copy_to_mapping 	        4 	      0.2805
+gdr_copy_to_mapping 	        8 	      0.2805
+gdr_copy_to_mapping 	       16 	      0.2810
+gdr_copy_to_mapping 	       32 	      0.2780
+gdr_copy_to_mapping 	       64 	      0.2798
+gdr_copy_to_mapping 	      128 	      0.2810
+gdr_copy_to_mapping 	      256 	      0.2908
+gdr_copy_to_mapping 	      512 	      0.3158
+gdr_copy_to_mapping 	     1024 	      0.3675
+gdr_copy_to_mapping 	     2048 	      0.4707
+gdr_copy_to_mapping 	     4096 	      0.6808
+gdr_copy_to_mapping 	     8192 	      1.1161
+gdr_copy_to_mapping 	    16384 	      1.9717
+gdr_copy_to_mapping 	    32768 	      3.7038
+gdr_copy_to_mapping 	    65536 	      7.1443
+gdr_copy_to_mapping 	   131072 	     14.0032
+gdr_copy_to_mapping 	   262144 	     27.6698
+gdr_copy_to_mapping 	   524288 	     55.0511
+gdr_copy_to_mapping 	  1048576 	    109.8722
+gdr_copy_to_mapping 	  2097152 	    219.7732
+gdr_copy_to_mapping 	  4194304 	    431.0514
+gdr_copy_to_mapping 	  8388608 	    880.4238
+gdr_copy_to_mapping 	 16777216 	   1752.3347
+
+gdr_copy_from_mapping num iters for each size: 100
+Test 			 Size(B) 	 Avg.Time(us)
+gdr_copy_from_mapping 	        1 	      0.9387
+gdr_copy_from_mapping 	        2 	      1.8569
+gdr_copy_from_mapping 	        4 	      1.8427
+gdr_copy_from_mapping 	        8 	      1.8893
+gdr_copy_from_mapping 	       16 	      1.9929
+gdr_copy_from_mapping 	       32 	      2.8219
+gdr_copy_from_mapping 	       64 	      2.0598
+gdr_copy_from_mapping 	      128 	     12.0408
+gdr_copy_from_mapping 	      256 	     16.4791
+gdr_copy_from_mapping 	      512 	     32.5070
+gdr_copy_from_mapping 	     1024 	     41.6135
+gdr_copy_from_mapping 	     2048 	     78.7581
+gdr_copy_from_mapping 	     4096 	    143.7786
+gdr_copy_from_mapping 	     8192 	    301.8872
+gdr_copy_from_mapping 	    16384 	    615.6782
+gdr_copy_from_mapping 	    32768 	   1220.7033
+gdr_copy_from_mapping 	    65536 	   2450.2737
+gdr_copy_from_mapping 	   131072 	   5003.2838
+gdr_copy_from_mapping 	   262144 	   9894.9145
+gdr_copy_from_mapping 	   524288 	  19657.0026
+gdr_copy_from_mapping 	  1048576 	  39567.7968
+gdr_copy_from_mapping 	  2097152 	  79296.8016
+gdr_copy_from_mapping 	  4194304 	 234944.1746
+gdr_copy_from_mapping 	  8388608 	 519229.6889
+gdr_copy_from_mapping 	 16777216 	 958871.0914
+unmapping buffer
+unpinning buffer
+closing gdrdrv

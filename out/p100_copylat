@@ -1,0 +1,76 @@
+GPU id:0; name: Tesla P100-PCIE-16GB; Bus id: 0000:04:00
+GPU id:1; name: Tesla P100-PCIE-16GB; Bus id: 0000:05:00
+GPU id:2; name: Tesla P100-PCIE-16GB; Bus id: 0000:06:00
+GPU id:3; name: Tesla P100-PCIE-16GB; Bus id: 0000:07:00
+selecting device 0
+device ptr: 0x2b3ee4800000
+allocated size: 16777216
+
+map_d_ptr: 0x2b3eb536f000
+info.va: 2b3ee4800000
+info.mapped_size: 16777216
+info.page_size: 65536
+info.mapped: 1
+info.wc_mapping: 1
+page offset: 0
+user-space pointer: 0x2b3eb536f000
+
+gdr_copy_to_mapping num iters for each size: 10000
+WARNING: Measuring the issue overhead as observed by the CPU. Data might not be ordered all the way to the GPU internal visibility.
+Test 			 Size(B) 	 Avg.Time(us)
+gdr_copy_to_mapping 	        1 	      0.0826
+gdr_copy_to_mapping 	        2 	      0.0800
+gdr_copy_to_mapping 	        4 	      0.0803
+gdr_copy_to_mapping 	        8 	      0.0837
+gdr_copy_to_mapping 	       16 	      0.0803
+gdr_copy_to_mapping 	       32 	      0.0803
+gdr_copy_to_mapping 	       64 	      0.0800
+gdr_copy_to_mapping 	      128 	      0.0902
+gdr_copy_to_mapping 	      256 	      0.1002
+gdr_copy_to_mapping 	      512 	      0.1207
+gdr_copy_to_mapping 	     1024 	      0.1655
+gdr_copy_to_mapping 	     2048 	      0.2539
+gdr_copy_to_mapping 	     4096 	      0.4212
+gdr_copy_to_mapping 	     8192 	      0.7982
+gdr_copy_to_mapping 	    16384 	      1.5957
+gdr_copy_to_mapping 	    32768 	      3.2343
+gdr_copy_to_mapping 	    65536 	      6.6063
+gdr_copy_to_mapping 	   131072 	     13.0438
+gdr_copy_to_mapping 	   262144 	     25.6153
+gdr_copy_to_mapping 	   524288 	     51.5014
+gdr_copy_to_mapping 	  1048576 	    102.3980
+gdr_copy_to_mapping 	  2097152 	    205.1313
+gdr_copy_to_mapping 	  4194304 	    411.2308
+gdr_copy_to_mapping 	  8388608 	    823.6382
+gdr_copy_to_mapping 	 16777216 	   1648.3483
+
+gdr_copy_from_mapping num iters for each size: 100
+Test 			 Size(B) 	 Avg.Time(us)
+gdr_copy_from_mapping 	        1 	      0.9470
+gdr_copy_from_mapping 	        2 	      0.8586
+gdr_copy_from_mapping 	        4 	      0.8589
+gdr_copy_from_mapping 	        8 	      0.8590
+gdr_copy_from_mapping 	       16 	      0.8564
+gdr_copy_from_mapping 	       32 	      1.5528
+gdr_copy_from_mapping 	       64 	      2.5702
+gdr_copy_from_mapping 	      128 	      2.5960
+gdr_copy_from_mapping 	      256 	      2.6508
+gdr_copy_from_mapping 	      512 	      2.6426
+gdr_copy_from_mapping 	     1024 	      2.5649
+gdr_copy_from_mapping 	     2048 	      4.4840
+gdr_copy_from_mapping 	     4096 	      9.4633
+gdr_copy_from_mapping 	     8192 	     17.5129
+gdr_copy_from_mapping 	    16384 	     28.8652
+gdr_copy_from_mapping 	    32768 	     56.8380
+gdr_copy_from_mapping 	    65536 	    117.4759
+gdr_copy_from_mapping 	   131072 	    237.7822
+gdr_copy_from_mapping 	   262144 	    495.5714
+gdr_copy_from_mapping 	   524288 	    993.5685
+gdr_copy_from_mapping 	  1048576 	   1983.9481
+gdr_copy_from_mapping 	  2097152 	   3967.0015
+gdr_copy_from_mapping 	  4194304 	   7973.2252
+gdr_copy_from_mapping 	  8388608 	  18800.8040
+gdr_copy_from_mapping 	 16777216 	  37743.4890
+unmapping buffer
+unpinning buffer
+closing gdrdrv
