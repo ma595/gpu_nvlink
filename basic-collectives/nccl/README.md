@@ -2,7 +2,7 @@
 
 NCCL documentation with some useful examples is found [here](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/examples.html)
 
-There are two examples:
+There are two examples of how to do something like a vector norm (modified from the above examples):
 - Example 1 [vector_norm_nccl](src/vector_norm_nccl.cu), which has one thread or process and multiple devices. A communicator object is created for each device. 
 - Example 2 [vector_norm_nccl-mpi](src/vector_norm_nccl-mpi.cu) which has one process / host thread responsible for at most one GPU. 
 
