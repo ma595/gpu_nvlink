@@ -3,10 +3,17 @@
 #include <stdlib.h>
 #include <iostream>
 #include <stdexcept>
-#include <type_traits>
+/* #include <constexpr> */
+#include <stdexcept>
 #include "cublas_v2.h"
 #include <cuda_runtime.h>
+#include <type_traits>
 #include "dot.cuh"
+
+template <class T>
+struct dependent_false : std::false_type
+{
+};
 
 /* template <typename T> */
 /* T dot_cublas(cublasHandle_t handle, std::size_t n, T* x, T* y) */
@@ -70,11 +77,6 @@ void test_init(){
   /* } */
 }
 
-template <class T>
-struct dependent_false : std::false_type
-{
-};
-
 // reduce (sum) a vector over two devices.
 template <typename T>
 void reduce_sendbufftor(){
@@ -82,8 +84,6 @@ void reduce_sendbufftor(){
   int sz = 32;
 
   int devs[2] = {0, 1};
-  /* cublasHandle_t handle; */
-  /* cublasCreate(&handle); */
   T value = 10.;
   T* host_v = (T*)malloc(sz * sizeof(T));
   for (int i = 0; i < sz; i++){
@@ -167,21 +167,33 @@ int vector_norm_ssm(){
   //initializing NCCL
   ncclCommInitAll(comms, nDev, devs);
 
+  cublasHandle_t handle;
+  cublasCreate(&handle);
+  cublasSetPointerMode(handle,CUBLAS_POINTER_MODE_DEVICE); // set here!!!
+
   
   //calling NCCL communication API. Group API is required when using
   //multiple devices per thread
+
+  T* result = (T*)malloc(sizeof(T));
+
   ncclGroupStart();
   for (int i = 0; i < nDev; ++i){
     // dot product kernel
     /* dot(handle, size * sizeof(T), vec[i], vec[i]); */
     /* dot<<<1,16>>>(size,  vec[i], vec[i], &recvbuff[i][0]); */
-    full_dot<<<1,16>>>(vec[i], vec[i], &dot_result[i], size);
+    /* dot<<<1,1>>>(size,  vec[i], vec[i], &dot_result[i]); */
+    /* full_dot<<<1,1>>>(vec[i], vec[i], &dot_result[i], size); */
 
     // ncclAllReduce(vec, recvbuff, num_of_elements, type, reduction_operation, comms, streams)
+
+    cublasSdot(handle, size, vec[i], 1, vec[i], 1, &dot_result[i]);
+    /* cublasSdot(handle, size, vec[i], 1, vec[i], 1, result); */
     ncclAllReduce((const void*)&dot_result[i], (void*)&reduced_result[i], 1, ncclFloat,\
         ncclSum, comms[i], s[i]);
   }
   ncclGroupEnd();
+
 
  
   //synchronizing on CUDA streams to wait for completion of NCCL operation
@@ -195,8 +207,10 @@ int vector_norm_ssm(){
   T val = -999.;
   cudaMemcpy(&val, &reduced_result[1], sizeof(T), cudaMemcpyDeviceToHost);
   printf("dot %f \n", val);
+  printf("%f\n", result);
  
 
+  cublasDestroy(handle);
   //free device buffers
   for (int i = 0; i < nDev; ++i) {
     cudaSetDevice(i);
